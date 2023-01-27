@@ -6,9 +6,13 @@ import android.util.Log
 import android.widget.SeekBar
 import androidx.appcompat.app.AlertDialog
 import com.matthew.bullseye.databinding.ActivityMainBinding
+import kotlin.math.abs
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     private var sliderValue = 0
+    private var targetValue = Random.nextInt(1, 100)
+
     private lateinit var binding: ActivityMainBinding
 
     //Testing pushing from android studio
@@ -35,12 +39,20 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+
+        binding.targetTextView.text = targetValue.toString()
+    }
+
+    private fun pointsForCurrentRound(): Int {
+        val maxScore = 100
+        val difference = abs(targetValue - sliderValue)
+        return maxScore - difference
     }
 
     private fun showResult() {
         val dialogTitle = getString(R.string.result_dialog_title)
-        val dialogMessage = getString(R.string.result_dialog_message, sliderValue)
-//        val dialogMessage = "The slider's value is $sliderValue"
+        val dialogMessage =
+            getString(R.string.result_dialog_message, sliderValue, pointsForCurrentRound())
         val builder = AlertDialog.Builder(this)
 
         builder.setTitle(dialogTitle)

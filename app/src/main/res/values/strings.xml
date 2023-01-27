@@ -6,6 +6,6 @@
     <string name="max_value_text">100</string>
     <string name="hit_me_button_text">HIT ME</string>
     <string name="result_dialog_title">Hello There!</string>
-    <string name="result_dialog_message">The slider\'s value is %1$d</string>
+    <string name="result_dialog_message">The slider\'s value is %1$d.\nYou Scored %2$d points this round.</string>
     <string name="result_dialog_button_text">Awesome!</string>
 </resources>
