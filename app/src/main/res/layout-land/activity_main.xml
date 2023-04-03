@@ -6,8 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/bgimage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="-20dp"
+        android:scaleType="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/background" />
+
     <TextView
         android:id="@+id/textView"
+        style="@style/instruction_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/instruction_text"
@@ -23,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/target_value_text"
-        android:textSize="24sp"
+        style="@style/big_text"
         app:layout_constraintBottom_toTopOf="@+id/seekBar"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintStart_toStartOf="@+id/textView"
@@ -32,6 +45,11 @@
     <SeekBar
         android:id="@+id/seekBar"
         android:layout_width="0dp"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
+        android:splitTrack="false"
+        android:progressDrawable="@drawable/seekbar_progress"
+        android:thumb="@drawable/nub"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textView4"
@@ -68,27 +86,33 @@
         android:id="@+id/hitMeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
+        android:padding="16dp"
         android:text="@string/hit_me_button_text"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+        app:layout_constraintTop_toBottomOf="@+id/seekBar"
+        app:layout_constraintVertical_bias="0.0" />
 
-    <Button
+    <ImageButton
         android:id="@+id/startOverButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/start_over"
+        android:background="@drawable/circular_button"
+        android:src="@drawable/refresh_24"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/scoreGroup"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hitMeButton" />
 
-    <Button
+    <ImageButton
         android:id="@+id/infoButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/circular_button"
+        android:src="@drawable/info_24"
         android:text="@string/info"
         app:layout_constraintBottom_toBottomOf="@+id/roundGroup"
         app:layout_constraintEnd_toEndOf="parent"
@@ -117,6 +141,7 @@
         <TextView
             android:id="@+id/gameScoreTextView"
             android:layout_width="wrap_content"
+            style="@style/game_stats_text"
             android:layout_height="wrap_content"
             android:text="0" />
     </LinearLayout>
@@ -141,6 +166,7 @@
 
         <TextView
             android:id="@+id/gameRoundTextView"
+            style="@style/game_stats_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0" />

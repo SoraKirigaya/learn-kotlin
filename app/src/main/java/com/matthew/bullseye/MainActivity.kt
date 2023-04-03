@@ -1,10 +1,12 @@
 package com.matthew.bullseye
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.SeekBar
 import androidx.appcompat.app.AlertDialog
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.matthew.bullseye.databinding.ActivityMainBinding
 import kotlin.math.abs
 import kotlin.random.Random
@@ -20,7 +22,8 @@ class MainActivity : AppCompatActivity() {
 
     //Testing pushing from android studio
     override fun onCreate(savedInstanceState: Bundle?) {
-        supportActionBar?.hide()
+        installSplashScreen()
+
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
@@ -51,11 +54,19 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+        binding.infoButton?.setOnClickListener {
+            navigateToAboutPage()
+        }
     }
 
     private fun differenceAmount() = abs(targetValue - sliderValue)
 
     private fun nextTargetValue() = Random.nextInt(1, 100)
+
+    private fun navigateToAboutPage() {
+        val intent = Intent(this, AboutActivity::class.java)
+        startActivity(intent)
+    }
 
     private fun bonusPoints(): Int {
         val difference = differenceAmount()
