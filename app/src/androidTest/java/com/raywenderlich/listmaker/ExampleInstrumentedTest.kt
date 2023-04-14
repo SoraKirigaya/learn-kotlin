@@ -1,4 +1,4 @@
-package com.matthew.listmaker
+package com.raywenderlich.listmaker
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.matthew.listmaker", appContext.packageName)
+        assertEquals("com.raywenderlich.listmaker", appContext.packageName)
     }
 }

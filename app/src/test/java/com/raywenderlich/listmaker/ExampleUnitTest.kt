@@ -1,4 +1,4 @@
-package com.matthew.listmaker
+package com.raywenderlich.listmaker
 
 import org.junit.Test
 
