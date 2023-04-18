@@ -1,5 +1,6 @@
 package com.raywenderlich.listmaker
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.view.Menu
@@ -11,10 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), TodoListAdapter.TodoListClickListener {
 
     private lateinit var todoListRecyclerView: RecyclerView
     private val listDataManager: ListDataManager = ListDataManager(this)
+
+    companion object {
+        const val INTENT_LIST_KEY = "list"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         val lists = listDataManager.readLists()
         todoListRecyclerView = findViewById(R.id.lists_recyclerview)
         todoListRecyclerView.layoutManager = LinearLayoutManager(this)
-        todoListRecyclerView.adapter = TodoListAdapter(lists)
+        todoListRecyclerView.adapter = TodoListAdapter(lists, this)
 
         fab.setOnClickListener { _ ->
             showCreateTodoListDialog()
@@ -65,7 +70,18 @@ class MainActivity : AppCompatActivity() {
             listDataManager.saveList(list)
             adapter.addList(list)
             dialog.dismiss()
+            showTaskListItems(list)
         }
         myDialog.create().show()
+    }
+
+    private fun showTaskListItems(list: TaskList) {
+        val taskListItem = Intent(this, DetailActivity::class.java)
+        taskListItem.putExtra(INTENT_LIST_KEY, list)
+        startActivity(taskListItem)
+    }
+
+    override fun listItemClicked(list: TaskList) {
+        showTaskListItems(list)
     }
 }
