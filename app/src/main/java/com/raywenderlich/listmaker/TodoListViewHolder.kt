@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class TodoListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    var listPositionTextView: TextView = itemView.findViewById<TextView>(R.id.itemNumber)
-    var listTitleTextView: TextView = itemView.findViewById<TextView>(R.id.itemString)
+    var listPositionTextView = itemView.findViewById<TextView>(R.id.itemNumber)
+    var listTitleTextView = itemView.findViewById<TextView>(R.id.itemString)
 
 }
